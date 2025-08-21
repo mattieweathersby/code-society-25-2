@@ -11,7 +11,12 @@ export function compareStrings(a: string, b: string): number {
   // The distance will be a number less than 0 if string `a` is lexicographically less than `b`, 1
   // if it is greater, and 0 if the strings are equal.
   const distance = computeLexicographicDistance(a, b);
-
+  if(distance < 0){
+    return -1;
+  }
+  else if(distance > 0){
+    return 1;
+  }
   // TODO(you): Finish this method.
 
   return 0;
@@ -24,7 +29,17 @@ export function compareStrings(a: string, b: string): number {
  * @return The factorial of n.
  */
 export function computeFactorial(n: number): number {
-  return 0;
+  if(n === 0){
+    return 1;
+  }
+  else if(n < 0){
+    return 0;
+  }
+  let result = 1;
+  for (let i = 1; i <= n; i++){
+    result = result * i;
+  }
+  return result;
 }
 
 /**
@@ -34,8 +49,22 @@ export function computeFactorial(n: number): number {
  * @return An array containing the first `n` Fibonacci values.
  */
 export function getFirstNFibonacciNumbers(n: number): number[] {
-  return [];
-}
+    if (n === 0) {
+      return [];
+    }
+    if (n === 1) {
+      return [1];
+    }
+
+    const sequence = [1, 1];
+
+    for (let i = 2; i < n; i++) {
+      const nextNumber = sequence[i - 1] + sequence[i - 2];
+      sequence.push(nextNumber);
+    }
+
+    return sequence;
+  }
 
 /**
  * Finds a value in an array of values.
@@ -50,7 +79,7 @@ export function binarySearch(
   values: number[],
   start: number,
   end: number,
-  value: number,
+  value: number
 ): number {
   if (end < start) {
     // The range is not valid so just return -1.
@@ -59,11 +88,11 @@ export function binarySearch(
 
   const pivotIndex = Math.floor((start + end) / 2); // The index in the middle of the array.
 
-  // TODO(you): Finish implementing this algorithm
-
-  // If values[pivotIndex] is equal to value then return `pivotIndex`.
-  // Else if values[pivotIndex] is greater than the value, then
-  // call `binarySearch(values, start, pivotIndex - 1, value)` and return its value;
-  // Else call `binarySearch(values, pivotIndex + 1, end, value)` and return its value.
-  return -1;
+  if (values[pivotIndex] === value) {
+    return pivotIndex;
+  } else if (values[pivotIndex] > value) {
+    return binarySearch(values, start, pivotIndex - 1, value);
+  } else {
+    return binarySearch(values, pivotIndex + 1, end, value);
+  }
 }

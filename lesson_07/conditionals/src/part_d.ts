@@ -7,7 +7,11 @@
  * @returns
  */
 export function isWithinRange(num: number, min: number, max: number): boolean {
-  return false;
+  if (num >= min && num <= max) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 /**
@@ -19,9 +23,12 @@ export function isWithinRange(num: number, min: number, max: number): boolean {
  * @returns
  */
 export function isValidTriangle(a: number, b: number, c: number): boolean {
-  return false;
+  if (a * a + b * b == c * c) {
+    return true;
+  } else {
+    return false;
+  }
 }
-
 /**
  * Determines what season it is based on the given month, or returns "Invalid month"
  * if the month is invalid. Month numbers range from 1 to 12.
@@ -30,5 +37,15 @@ export function isValidTriangle(a: number, b: number, c: number): boolean {
  * @returns
  */
 export function getSeason(month: number): string {
-  return "Invalid month";
+  if (month === 12 || month === 1 || month === 2) {
+    return "Winter";
+  } else if (month >= 3 && month <= 5) {
+    return "Spring";
+  } else if (month >= 6 && month <= 8) {
+    return "Summer";
+  } else if (month >= 9 && month <= 11) {
+    return "Fall";
+  } else {
+    return "Invalid month";
+  }
 }
