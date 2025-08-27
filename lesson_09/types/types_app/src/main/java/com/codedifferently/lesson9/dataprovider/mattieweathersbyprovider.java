@@ -6,6 +6,7 @@
 package com.codedifferently.lesson9.dataprovider;
 
 import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,12 +17,12 @@ public class mattieweathersbyprovider extends DataProvider {
 
   public Map<String, Class> getColumnTypeByName() {
     return Map.of(
-        "column1", Short.class, /*short */
-        "column2", Integer.class, /*integer */
-        "column3", Double.class, /*float */
-        "column4", String.class, /*string */
-        "column5", Boolean.class, /*boolean */
-        "column6", Long.class, /*long */
-        "column7", Float.class); /*double */
+        "column1", Short.class, 
+        "column2", Integer.class, 
+        "column3", Double.class, 
+        "column4", String.class, 
+        "column5", Boolean.class, 
+        "column6", Long.class, 
+        "column7", Float.class); 
   }
 }
