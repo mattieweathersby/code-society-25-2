@@ -101,4 +101,74 @@ class GameTest {
 
     assertEquals("Title cannot be null or empty", exception.getMessage());
   }
+
+  @Test
+  void testAddGameSystemIncreasesCount() {
+    // Arrange
+    GameLogs game = new GameLogs("Sims", "PC", 59.99, "Walmart", 9, GameLogs.GameGenre.RPG);
+
+    // Act
+    game.addGameSystem("PlayStation");
+    int result = game.getSystemCount();
+
+    // Assert
+    assertEquals(2, result);
+  }
+
+  @Test
+  void testSetTitleUpdatesTitle() {
+    GameLogs game = new GameLogs("Sims", "PC", 59.99, "Walmart", 9, GameLogs.GameGenre.RPG);
+    game.setTitle("Sims 2");
+    assertEquals("Sims 2", game.getTitle());
+  }
+
+  @Test
+  void testSetPriceUpdatesPrice() {
+    GameLogs game = new GameLogs("Sims", "PC", 59.99, "Walmart", 9, GameLogs.GameGenre.RPG);
+    game.setPrice(39.99);
+    assertEquals(39.99, game.getPrice());
+  }
+
+  @Test
+  void testSetStoreLocationUpdatesLocation() {
+    GameLogs game = new GameLogs("Sims", "PC", 59.99, "Walmart", 9, GameLogs.GameGenre.RPG);
+    game.setStoreLocation("Target");
+    assertEquals("Target", game.getStoreLocation());
+  }
+
+  @Test
+  void testSetRatingUpdatesRating() {
+    GameLogs game = new GameLogs("Sims", "PC", 59.99, "Walmart", 9, GameLogs.GameGenre.RPG);
+    game.setRating(7);
+    assertEquals(7, game.getRating());
+  }
+
+  @Test
+  void testSetGenreUpdatesGenre() {
+    GameLogs game = new GameLogs("Sims", "PC", 59.99, "Walmart", 9, GameLogs.GameGenre.RPG);
+    game.setGenre(GameLogs.GameGenre.ACTION);
+    assertEquals(GameLogs.GameGenre.ACTION, game.getGenre());
+  }
+
+  @Test
+  void testCheckRatingHigh() {
+    GameLogs game = new GameLogs("Halo", "Xbox", 59.99, "BestBuy", 9, GameLogs.GameGenre.ACTION);
+    int result = game.checkRating();
+    assertEquals(9, result);
+  }
+
+  @Test
+  void testCheckRatingAverage() {
+    GameLogs game = new GameLogs("Minecraft", "PC", 29.99, "Amazon", 6, GameLogs.GameGenre.PUZZLE);
+    int result = game.checkRating();
+    assertEquals(6, result);
+  }
+
+  @Test
+  void testCheckRatingLow() {
+    GameLogs game =
+        new GameLogs("Unknown", "Switch", 10.00, "GameStop", 3, GameLogs.GameGenre.OTHER);
+    int result = game.checkRating();
+    assertEquals(3, result);
+  }
 }
