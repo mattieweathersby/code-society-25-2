@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mattie Weathersby Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="gallery">
+            <img src="riyah.jpeg" alt="Riyah">
+            <img src="riyah 2.jpeg" alt="Riyah2">
+            <img src="liyah.jpeg" alt="Liyah">
+            <img src="liyah 2.jpeg" alt="Liyah2">
+        </div>
+    </header>
+
+    <div class="accordion">
+        <div class="accordion-item">
+            <button class="accordion-header">Sa'Riyah</button>
+            <div class="accordion-body">
+                <div class="tabs">
+                    <button class="tab active" data-tab="riyah-about">About Me</button>
+                    <button class="tab" data-tab="riyah-age">Age</button>
+                </div>
+                <div class="tab-content active" id="riyah-about">
+                    <p>Sa'Riyah loves to play and explore.</p>
+                </div>
+                <div class="tab-content" id="riyah-age">
+                    <p>Age: 7</p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <button class="accordion-header">Ja'Liyah</button>
+            <div class="accordion-body">
+                <div class="tabs">
+                    <button class="tab active" data-tab="liyah-about">About Me</button>
+                    <button class="tab" data-tab="liyah-age">Age</button>
+                </div>
+                <div class="tab-content active" id="liyah-about">
+                    <p>Ja'Liyah enjoys painting and drawing.</p>
+                </div>
+                <div class="tab-content" id="liyah-age">
+                    <p>Age: 6</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

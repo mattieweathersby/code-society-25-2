@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f7f7f7;
+}
+
+header {
+    background: #f7f7f7;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.gallery {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 420px;
+    margin: auto;
+}
+
+.gallery img {
+    width: 600px;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: none;
+}
+
+.gallery img.active {
+    display: block;
+}
+
+.accordion {
+    max-width: 500px;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 20px;
+}
+
+.accordion-header {
+    background: #E37383;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 12px;
+    font-size: 1.1em;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 6px;
+    font-weight: bold;
+    transition: background 0.2s;
+    color: #fff;
+}
+
+.accordion-header:hover {
+    background-color: #D8BFD8;
+    color: #f0f0f0;
+}
+
+.accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+    transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.3s;
+    opacity: 0;
+}
+
+.accordion-body.show {   
+    max-height: 500px;
+    padding: 20px;
+    opacity: 1;
+}
+
+.tabs {
+    margin-bottom: 10px;
+}
+.tab {
+    background: #eee;
+    border: none;
+    padding: 8px 16px;
+    margin-right: 4px;
+    border-radius: 6px 6px 0 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+.tab.active {
+    background: #E37383;
+    color: #fff;
+}
+.tab-content {
+    display: none;
+    padding: 10px 0;
+}
+.tab-content.active {
+    display: block;
+}
+
+@media screen and (max-width: 600px) {
+    .gallery img {
+        width: 54px;
+        height: 80px;
+    }
+    .accordion {
+        max-width: 98vw;
+        padding: 10px;
+    }
+}
