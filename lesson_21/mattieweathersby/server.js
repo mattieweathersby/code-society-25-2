@@ -5,18 +5,15 @@ const http = require('http');
 const express = require('express');
 const app = express();
 
-//create a server that listens on port 3000 and responds with a message
-const server = http.createServer((req, res) => {
-    const PORT = 3000;
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end(`Server is running on port ${3000}\n`);
+const PORT = 3000;
+
+app.get('/', (req, res) => {
+    res.status(200).send(`Server is running on port ${PORT}\n`);
 });
 
-//tell express to serve files from the 'public' directory
+// Serve static files from the 'public' directory
 app.use(express.static('public'));
 
-
-
-app.listen(3000, () => {
-    console.log('Express server is running on port 3000');
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Express server is running on port ${PORT}`);
 });
