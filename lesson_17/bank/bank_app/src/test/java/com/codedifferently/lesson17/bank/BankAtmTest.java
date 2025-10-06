@@ -15,21 +15,27 @@ class BankAtmTest {
   private BankAtm classUnderTest;
   private Account account1;
   private Account account2;
+  private Account account3;
   private Customer customer1;
   private Customer customer2;
+  private Customer customer3;
 
   @BeforeEach
   void setUp() {
     classUnderTest = new BankAtm();
     customer1 = new Customer(UUID.randomUUID(), "John Doe");
     customer2 = new Customer(UUID.randomUUID(), "Jane Smith");
+    customer3 = new Customer(UUID.randomUUID(), "Alice Johnson");
     account1 = new CheckingAccount("123456789", Set.of(customer1), 100.0);
     account2 = new CheckingAccount("987654321", Set.of(customer1, customer2), 200.0);
+    account3 = new SavingsAccount("555555555", Set.of(customer3), 300.0);
     customer1.addAccount(account1);
     customer1.addAccount(account2);
     customer2.addAccount(account2);
+    customer3.addAccount(account3);
     classUnderTest.addAccount(account1);
     classUnderTest.addAccount(account2);
+    classUnderTest.addAccount(account3);
   }
 
   @Test
@@ -106,5 +112,13 @@ class BankAtmTest {
     assertThatExceptionOfType(AccountNotFoundException.class)
         .isThrownBy(() -> classUnderTest.withdrawFunds(nonExistingAccountNumber, 50.0))
         .withMessage("Account not found");
+  }
+
+  @Test
+  void testSavingsAccountCheckDraw() {
+    // Act & Assert
+    assertThatExceptionOfType(UnsupportedOperationException.class)
+        .isThrownBy(() -> new Check("555555555", account3.getOwners(), 100.0, account3))
+        .withMessage("Cannot write a check against a savings account");
   }
 }

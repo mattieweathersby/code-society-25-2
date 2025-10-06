@@ -50,4 +50,11 @@ public interface Account {
    * @return True if the account is closed, otherwise false.
    */
   boolean isClosed();
+
+  /**
+   * Checks if the account can write a check.
+   *
+   * @return True if the account can write a check, otherwise false.
+   */
+  boolean canWriteCheck();
 }

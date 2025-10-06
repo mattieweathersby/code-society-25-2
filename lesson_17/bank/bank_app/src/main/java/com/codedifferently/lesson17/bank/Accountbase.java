@@ -25,6 +25,11 @@ public class Accountbase implements Account {
     isActive = true;
   }
 
+  @Override
+  public boolean canWriteCheck() {
+    return true; // Default: most accounts can write checks
+  }
+
   /**
    * Gets the account number.
    *

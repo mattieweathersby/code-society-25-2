@@ -23,6 +23,9 @@ public class Check extends Accountbase {
     if (amount < 0) {
       throw new IllegalArgumentException("Check amount must be positive");
     }
+    if (!account.canWriteCheck()) {
+      throw new UnsupportedOperationException("Cannot write a check against a savings account");
+    }
     this.checkNumber = checkNumber;
     this.amount = amount;
     this.account = account;
