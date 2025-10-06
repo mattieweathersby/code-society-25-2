@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 class BankAtmTest {
 
   private BankAtm classUnderTest;
-  private CheckingAccount account1;
-  private CheckingAccount account2;
+  private Account account1;
+  private Account account2;
   private Customer customer1;
   private Customer customer2;
 
@@ -36,21 +36,21 @@ class BankAtmTest {
   void testAddAccount() {
     // Arrange
     Customer customer3 = new Customer(UUID.randomUUID(), "Alice Johnson");
-    CheckingAccount account3 = new CheckingAccount("555555555", Set.of(customer3), 300.0);
+    Account account3 = new CheckingAccount("555555555", Set.of(customer3), 300.0);
     customer3.addAccount(account3);
 
     // Act
     classUnderTest.addAccount(account3);
 
     // Assert
-    Set<CheckingAccount> accounts = classUnderTest.findAccountsByCustomerId(customer3.getId());
+    Set<Account> accounts = classUnderTest.findAccountsByCustomerId(customer3.getId());
     assertThat(accounts).containsOnly(account3);
   }
 
   @Test
   void testFindAccountsByCustomerId() {
     // Act
-    Set<CheckingAccount> accounts = classUnderTest.findAccountsByCustomerId(customer1.getId());
+    Set<Account> accounts = classUnderTest.findAccountsByCustomerId(customer1.getId());
 
     // Assert
     assertThat(accounts).containsOnly(account1, account2);
@@ -68,7 +68,7 @@ class BankAtmTest {
   @Test
   void testDepositFunds_Check() {
     // Arrange
-    Check check = new Check("987654321", 100.0, account1);
+    Check check = new Check("987654321", account1.getOwners(), 100.0, account1);
 
     // Act
     classUnderTest.depositFunds("987654321", check);
@@ -80,7 +80,7 @@ class BankAtmTest {
 
   @Test
   void testDepositFunds_DoesntDepositCheckTwice() {
-    Check check = new Check("987654321", 100.0, account1);
+    Check check = new Check("987654321", account2.getOwners(), 100.0, account2);
 
     classUnderTest.depositFunds("987654321", check);
 

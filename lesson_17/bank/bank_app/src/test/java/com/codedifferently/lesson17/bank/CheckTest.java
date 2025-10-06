@@ -9,15 +9,15 @@ import org.junit.jupiter.api.Test;
 
 class CheckTest {
 
-  private CheckingAccount account1;
-  private CheckingAccount account2;
+  private Account account1;
+  private Account account2;
   private Check classUnderTest;
 
   @BeforeEach
   void setUp() {
     account1 = new CheckingAccount("123456789", null, 100.0);
     account2 = new CheckingAccount("987654321", null, 200.0);
-    classUnderTest = new Check("123456789", 50.0, account1);
+    classUnderTest = new Check("123456789", account1.getOwners(), 50.0, account1);
   }
 
   @Test
@@ -45,14 +45,14 @@ class CheckTest {
   void testConstructor_CantCreateCheckWithNegativeAmount() {
     // Act & Assert
     assertThatExceptionOfType(IllegalArgumentException.class)
-        .isThrownBy(() -> new Check("123456789", -50.0, account1))
+        .isThrownBy(() -> new Check("123456789", account1.getOwners(), -50.0, account1))
         .withMessage("Check amount must be positive");
   }
 
   @Test
   void testHashCode() {
     // Arrange
-    Check otherCheck = new Check("123456789", 100.0, account1);
+    Check otherCheck = new Check("123456789", account1.getOwners(), 100.0, account1);
 
     // Assert
     assertThat(classUnderTest.hashCode()).isEqualTo(otherCheck.hashCode());
@@ -61,8 +61,8 @@ class CheckTest {
   @Test
   void testEquals() {
     // Arrange
-    Check otherCheck = new Check("123456789", 100.0, account1);
-    Check differentCheck = new Check("987654321", 100.0, account1);
+    Check otherCheck = new Check("123456789", account1.getOwners(), 100.0, account1);
+    Check differentCheck = new Check("987654321", account1.getOwners(), 100.0, account1);
 
     // Assert
     assertThat(classUnderTest.equals(otherCheck)).isTrue();

@@ -1,13 +1,14 @@
 package com.codedifferently.lesson17.bank;
 
 import com.codedifferently.lesson17.bank.exceptions.CheckVoidedException;
+import java.util.Set;
 
 /** Represents a check. */
-public class Check {
+public class Check extends Accountbase {
 
   private final String checkNumber;
   private final double amount;
-  private final CheckingAccount account;
+  private final Account account;
   private boolean isVoided = false;
 
   /**
@@ -17,7 +18,8 @@ public class Check {
    * @param amount The amount of the check.
    * @param account The account the check is drawn on.
    */
-  public Check(String checkNumber, double amount, CheckingAccount account) {
+  public Check(String checkNumber, Set<Customer> owners, double amount, Account account) {
+    super(account.getAccountNumber(), owners, account.getBalance());
     if (amount < 0) {
       throw new IllegalArgumentException("Check amount must be positive");
     }
@@ -45,7 +47,7 @@ public class Check {
    *
    * @param toAccount The account to deposit the check into.
    */
-  public void depositFunds(CheckingAccount toAccount) {
+  public void depositFunds(Account toAccount) {
     if (isVoided) {
       throw new CheckVoidedException("Check is voided");
     }

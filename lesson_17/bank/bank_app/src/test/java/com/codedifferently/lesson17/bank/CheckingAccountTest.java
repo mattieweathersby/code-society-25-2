@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 class CheckingAccountTest {
 
-  private CheckingAccount classUnderTest;
+  private Account classUnderTest;
   private Set<Customer> owners;
 
   @BeforeEach
@@ -88,13 +88,13 @@ class CheckingAccountTest {
 
   @Test
   void equals() {
-    CheckingAccount otherAccount = new CheckingAccount("123456789", owners, 200.0);
+    Account otherAccount = new CheckingAccount("123456789", owners, 200.0);
     assertEquals(classUnderTest, otherAccount);
   }
 
   @Test
   void hashCodeTest() {
-    CheckingAccount otherAccount = new CheckingAccount("123456789", owners, 200.0);
+    Account otherAccount = new CheckingAccount("123456789", owners, 200.0);
     assertEquals(classUnderTest.hashCode(), otherAccount.hashCode());
   }
 
