@@ -5,12 +5,10 @@ const path = require('path');
 
 const PORT = 3000;
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/contact.html'));
-});
+
 
 // Serve static files from the 'public' directory
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Middleware to parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({ extended: true }));
