@@ -31,10 +31,15 @@
     }
   }
 
-  .sign-up-button {
+  .sign-up-button, .new-program-button {
     border-radius: 10px;
     color: white;
     background-color: #f47d26;
     padding: 10px 20px;
+    margin-right: 20px;
   }
+  .new-program-link {
+    color: white;
+  }
+
 }
